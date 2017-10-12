@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 typedef struct Nodo{
     int diametro;
     Nodo* siguente;
@@ -31,6 +32,25 @@ void imprimePilaSimple(Nodo *pila){
         aux=aux->siguente;
     }
     printf("nil\n\n");
+}
+void llenarTorre(Nodo** torre,int pisitos){
+    Nodo* nuevo=crearNodo(24);
+    int pisos=pisitos;
+    apilar(torre,nuevo);
+    int diaAleatorio=(rand() % 24) +1;
+    while(pisos>0 && ((*torre)->diametro > 1) ){
+        //printf("diaA = %i ,D = %i\n",diaAleatorio,(*torre)->diametro );
+        if (diaAleatorio < ((*torre))->diametro){
+            nuevo=crearNodo(diaAleatorio);
+            apilar(torre,nuevo);
+            diaAleatorio=(rand() % 24) +1;
+            pisos--;
+            
+        }
+        else{
+            diaAleatorio=(rand() % 24) +1;
+        }
+    }
 }
 int largoPila(Nodo* pila){
     Nodo* recorredor=pila;
@@ -105,6 +125,7 @@ void moverTorre(int discos,Nodo** origen,Nodo** auxiliar,Nodo** destino){
         apilar(destino,mover);
         imprimePilaSimple(*origen);
         imprimePilaSimple(*destino);
+        imprimePilaSimple(*auxiliar);
         printf("\n\n");
     }else{
         moverTorre(discos-1,origen,destino,auxiliar);
@@ -114,6 +135,7 @@ void moverTorre(int discos,Nodo** origen,Nodo** auxiliar,Nodo** destino){
         apilar(destino,mover);
         imprimePilaSimple(*origen);
         imprimePilaSimple(*destino);
+        imprimePilaSimple(*auxiliar);
         printf("\n\n");
         moverTorre(discos-1,auxiliar,origen,destino);
     }
