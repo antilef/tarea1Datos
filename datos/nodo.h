@@ -30,35 +30,30 @@ void imprimePila(Nodo *pila){
         printf("(%i) -- ",aux->diametro);
         aux=aux->siguente;
     }
-    printf("nil\n");
+    printf("nil\n\n");
 }
 
 void moverTorre(int discos,Nodo** origen,Nodo** auxiliar,Nodo** destino){
     Nodo *mover;
-    if(discos==1){
-        mover=desApilar(origen);
-        apilar(destino,mover);
-    }else{
-        moverTorre(discos-1,origen,destino,auxiliar);
-        mover=desApilar(origen);
-        apilar(destino,mover);
-        moverTorre(discos-1,auxiliar,origen,destino);
-    }
-}
-
-void moverTorreNumeros(int discos,int origen,int auxiliar,int destino){
     char tecla;
-    char chungo[20]="";
     if(discos==1){
         printf("Para seguir pulse ENTER POR FAVOR!!!!!: ");
         tecla=getchar();
-        printf("Mover disco de (%i) a destino (%i)\n",origen,destino);
+        mover=desApilar(origen);
+        apilar(destino,mover);
+        imprimePila(*origen);
+        imprimePila(*destino);
+        printf("\n\n");
     }else{
-        moverTorreNumeros(discos-1,origen,destino,auxiliar);
+        moverTorre(discos-1,origen,destino,auxiliar);
         printf("Para seguir pulse ENTER POR FAVOR!!!!!: ");
-        getchar();
-        printf("Mover disco de (%i) a (%i)\n",origen,destino);
-        moverTorreNumeros(discos-1,auxiliar,origen,destino);
+        tecla=getchar();
+        mover=desApilar(origen);
+        apilar(destino,mover);
+        imprimePila(*origen);
+        imprimePila(*destino);
+        printf("\n\n");
+        moverTorre(discos-1,auxiliar,origen,destino);
     }
 }
 #endif
