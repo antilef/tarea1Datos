@@ -19,8 +19,11 @@ int main(int argc,char** argv){
         // 1 para verlo paso a paso
         //0 solo para ver el resultado
     }
+    llenarTorre(&pila,numeroDisco);
+    imprimerPilaAvanzado(pila,pila2,pila3);
+    moverTorreInteractivo(numeroDisco,&pila,&pila2,&pila3);
     //1:origen 2:torre Auxiliar 3:destino
-    if(torreInicio==1 && torreFin==2){//mover uno dos
+   /* if(torreInicio==1 && torreFin==2){//mover uno dos
 
     }else if(torreInicio==1 && torreFin==3){//uno tres
 
@@ -34,6 +37,6 @@ int main(int argc,char** argv){
 
     }else{
         printf("Kha");
-    }
+    }*/
     return 0;
 }

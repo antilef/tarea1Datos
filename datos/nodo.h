@@ -37,18 +37,21 @@ void llenarTorre(Nodo** torre,int pisitos){
     Nodo* nuevo=crearNodo(24);
     int pisos=pisitos;
     apilar(torre,nuevo);
-    int diaAleatorio=(rand() % 24) +1;
-    while(pisos>0 && ((*torre)->diametro > 1) ){
+    int diaAleatorio=(rand() % 4) +((*torre)->diametro-3) ;
+    //printf("d= %i , aleat= %i\n",(*torre)->diametro,diaAleatorio);
+    pisos--;
+    while(pisos>0 && diaAleatorio>0 && ((*torre)->diametro > 1) ){
         //printf("diaA = %i ,D = %i\n",diaAleatorio,(*torre)->diametro );
-        if (diaAleatorio < ((*torre))->diametro){
+        //printf("d= %i \n",(*torre)->diametro);
+        if (diaAleatorio <= ((*torre))->diametro){
             nuevo=crearNodo(diaAleatorio);
             apilar(torre,nuevo);
-            diaAleatorio=(rand() % 24) +1;
+            diaAleatorio=(rand() % 4) +(diaAleatorio-2);
             pisos--;
             
         }
         else{
-            diaAleatorio=(rand() % 24) +1;
+            diaAleatorio=(rand() % 4) +(diaAleatorio-2);
         }
     }
 }
@@ -119,6 +122,28 @@ void moverTorre(int discos,Nodo** origen,Nodo** auxiliar,Nodo** destino){
     Nodo *mover;
     char tecla;
     if(discos==1){
+        mover=desApilar(origen);
+        apilar(destino,mover);
+        imprimePilaSimple(*origen);
+        imprimePilaSimple(*destino);
+        imprimePilaSimple(*auxiliar);
+        printf("\n\n");
+    }else{
+        moverTorre(discos-1,origen,destino,auxiliar);
+        mover=desApilar(origen);
+        apilar(destino,mover);
+        imprimePilaSimple(*origen);
+        imprimePilaSimple(*destino);
+        imprimePilaSimple(*auxiliar);
+        printf("\n\n");
+        moverTorre(discos-1,auxiliar,origen,destino);
+    }
+}
+void moverTorreInteractivo(int discos,Nodo** origen,Nodo** auxiliar,Nodo** destino){
+    Nodo *mover;
+    Nodo *ka;
+    char tecla;
+    if(discos==1){
         printf("Para seguir pulse ENTER POR FAVOR!!!!!: ");
         tecla=getchar();
         mover=desApilar(origen);
@@ -128,6 +153,9 @@ void moverTorre(int discos,Nodo** origen,Nodo** auxiliar,Nodo** destino){
         imprimePilaSimple(*auxiliar);
         printf("\n\n");
     }else{
+        ka=*destino;
+        *destino=*auxiliar;
+        *auxiliar=ka;
         moverTorre(discos-1,origen,destino,auxiliar);
         printf("Para seguir pulse ENTER POR FAVOR!!!!!: ");
         tecla=getchar();
