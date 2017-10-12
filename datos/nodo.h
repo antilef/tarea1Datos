@@ -124,18 +124,18 @@ void moverTorre(int discos,Nodo** origen,Nodo** auxiliar,Nodo** destino){
     if(discos==1){
         mover=desApilar(origen);
         apilar(destino,mover);
-        imprimePilaSimple(*origen);
+        /*imprimePilaSimple(*origen);
         imprimePilaSimple(*destino);
         imprimePilaSimple(*auxiliar);
-        printf("\n\n");
+        printf("\n\n");*/
     }else{
         moverTorre(discos-1,origen,destino,auxiliar);
         mover=desApilar(origen);
         apilar(destino,mover);
-        imprimePilaSimple(*origen);
+        /*imprimePilaSimple(*origen);
         imprimePilaSimple(*destino);
         imprimePilaSimple(*auxiliar);
-        printf("\n\n");
+        printf("\n\n");*/
         moverTorre(discos-1,auxiliar,origen,destino);
     }
 }
@@ -148,9 +148,7 @@ void moverTorreInteractivo(int discos,Nodo** origen,Nodo** auxiliar,Nodo** desti
         tecla=getchar();
         mover=desApilar(origen);
         apilar(destino,mover);
-        imprimePilaSimple(*origen);
-        imprimePilaSimple(*destino);
-        imprimePilaSimple(*auxiliar);
+        imprimerPilaAvanzado(*origen,*destino,*auxiliar);
         printf("\n\n");
     }else{
         ka=*destino;
@@ -161,11 +159,10 @@ void moverTorreInteractivo(int discos,Nodo** origen,Nodo** auxiliar,Nodo** desti
         tecla=getchar();
         mover=desApilar(origen);
         apilar(destino,mover);
-        imprimePilaSimple(*origen);
-        imprimePilaSimple(*destino);
-        imprimePilaSimple(*auxiliar);
+        imprimerPilaAvanzado(*origen,*destino,*auxiliar);
         printf("\n\n");
         moverTorre(discos-1,auxiliar,origen,destino);
+        imprimerPilaAvanzado(*origen,*destino,*auxiliar);
     }
 }
 #endif
