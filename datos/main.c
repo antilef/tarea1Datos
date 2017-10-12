@@ -12,23 +12,30 @@ int main(int argc,char** argv){
     Nodo *pila=NULL;
     Nodo *pila2=NULL;
     Nodo *pila3=NULL;
-
+    //1:origen 2:torre Auxiliar 3:destino
+    //nodo pila 1
     Nodo* nuevo=crearNodo(11);
-    apilar(&pila,nuevo);
-    Nodo* nuevo1=crearNodo(2);
-    apilar(&pila,nuevo1);
-    Nodo* nuevo2=crearNodo(3);
+    apilar(&pila3,nuevo);
+    Nodo* nuevo1=crearNodo(5);
+    apilar(&pila3,nuevo1);
+    Nodo* nuevo2=crearNodo(2);
     apilar(&pila,nuevo2);
-    printf("pila 1\n");
-    imprimePila(pila);
-    printf("pila 3\n");
-    imprimePila(pila2);
-    printf("\n\n");
-    moverTorre(3,&pila,&pila3,&pila2);
-    //moverTorreNumeros(numeroDisco,1,2,3); //1:origen 2:torre Auxiliar 3:destino
-    printf("pila 1\n");
-    imprimePila(pila);
-    printf("pila 3\n");
-    imprimePila(pila2);
+    //Nodos pila 2
+    Nodo* nuevo3=crearNodo(3);
+    apilar(&pila2,nuevo3);
+    //nodos pila 3
+    
+    Nodo* nuevo5=crearNodo(2);
+    apilar(&pila3,nuevo5);
+    Nodo* nuevo4=crearNodo(6);
+    apilar(&pila,nuevo4);
+    Nodo* nuevo7=crearNodo(14);
+    apilar(&pila3,nuevo7);
+    Nodo* nuevo8=crearNodo(10);
+    apilar(&pila2,nuevo8);
+    
+    imprimerPilaAvanzado(pila,pila2,pila3);
+    //moverTorre(&pila,&pila2,&pila3);
+    //imprimerPilaAvanzado(pila,pila2,pila3);
     return 0;
 }

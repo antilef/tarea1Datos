@@ -23,7 +23,7 @@ Nodo* desApilar(Nodo** pila){
     (*pila)=(*pila)->siguente;
     return eliminar;
 }
-void imprimePila(Nodo *pila){
+void imprimePilaSimple(Nodo *pila){
     Nodo* aux =pila;
     printf("Empieza la pila \n");
     while(aux!=NULL){
@@ -32,7 +32,69 @@ void imprimePila(Nodo *pila){
     }
     printf("nil\n\n");
 }
-
+int largoPila(Nodo* pila){
+    Nodo* recorredor=pila;
+    int largo=0;
+    while(recorredor!=NULL){
+        recorredor=recorredor->siguente;
+        largo++;
+    }
+    return largo;
+}
+int mayor(int a,int b ,int c){
+    int candidato=a;
+    if(b>a && b>c){
+        candidato=b;
+    }else if(c>b && c>a){
+        candidato=c;
+    }
+    return candidato;
+}
+void imprimerPilaAvanzado(Nodo *pila,Nodo *pila2,Nodo *pila3){
+    int largoPila1=largoPila(pila);
+    int largoPila2=largoPila(pila2);
+    int largoPila3=largoPila(pila3);
+    int mayorAltura=mayor(largoPila1,largoPila2,largoPila3);
+    /*printf("largo pila 1 =(%i)",largoPila1);
+    printf("largo pila 2 =(%i)",largoPila2);
+    printf("largo pila 3 =(%i)\n",largoPila3);
+    printf("mayor altura =(%i)\n",mayorAltura);*/
+    int espacio1=mayorAltura-largoPila1;
+    int espacio2=mayorAltura-largoPila2;
+    int espacio3=mayorAltura-largoPila3;
+    Nodo *pilaCopia1=pila;
+    Nodo *pilaCopia2=pila2;
+    Nodo *pilaCopia3=pila3;
+    for(int i=0;i<3*mayorAltura;i++){
+        if(i%3==0){
+            if(espacio1>0){
+                printf("        ");
+                espacio1--;
+            }else{
+                printf("(%i)     ",pilaCopia1->diametro);
+                pilaCopia1=pilaCopia1->siguente;
+            }
+        }else if(i%3==1){
+            if(espacio2>0){
+                printf("          ");
+                espacio2--;
+            }else{
+                printf("(%i)      ",pilaCopia2->diametro);
+                pilaCopia2=pilaCopia2->siguente;
+            }
+        }else{
+            if(espacio3>0){
+                printf("          ");
+                espacio3--;
+            }else{
+                printf("(%i)       ",pilaCopia3->diametro);
+                pilaCopia3=pilaCopia3->siguente;
+            }
+            printf("\n");
+        }
+    }
+    printf("torre1  torre2  torre3\n");
+}
 void moverTorre(int discos,Nodo** origen,Nodo** auxiliar,Nodo** destino){
     Nodo *mover;
     char tecla;
@@ -41,8 +103,8 @@ void moverTorre(int discos,Nodo** origen,Nodo** auxiliar,Nodo** destino){
         tecla=getchar();
         mover=desApilar(origen);
         apilar(destino,mover);
-        imprimePila(*origen);
-        imprimePila(*destino);
+        imprimePilaSimple(*origen);
+        imprimePilaSimple(*destino);
         printf("\n\n");
     }else{
         moverTorre(discos-1,origen,destino,auxiliar);
@@ -50,8 +112,8 @@ void moverTorre(int discos,Nodo** origen,Nodo** auxiliar,Nodo** destino){
         tecla=getchar();
         mover=desApilar(origen);
         apilar(destino,mover);
-        imprimePila(*origen);
-        imprimePila(*destino);
+        imprimePilaSimple(*origen);
+        imprimePilaSimple(*destino);
         printf("\n\n");
         moverTorre(discos-1,auxiliar,origen,destino);
     }
