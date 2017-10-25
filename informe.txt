@@ -1,0 +1,27 @@
+
+Planteamiento del problema
+	El problema comenzo con la dificultad de crear los pisos de manera aleatoria pero obedeciendo la regla
+	que se le pide (osea que el piso inferior debe ser mayor o igual al piso inferior),luego se descomprime 
+	en el algoritmo principal que debe mover las torres sin que una de mayor diametro este encima de otra
+	y que cada piso se mueva una a la vez ,finalmente se debe lograr que se logre imprimir de manera adecuada 
+	las torres en forma de abaco y contar o calcular los movimientos que se efectuan para mover cada torre 
+
+solucion propuesta
+	Nosotros apostamos por usar un algoritmo recursivo,que no solo logre el objetivo sino que tambien genere
+	tanto un ahorro en computo como en el uso de la memoria ,para ello se aposto por usar una estructura de 
+	datos simple como lo es un stack("pila" en español), las cuales hicieran la analogia con la torres que 
+	se quieren mover,ya que estas solo se puede sacar de a una y deben ir acomodandose de una en una,con lo 
+	la funciones pop y push fueron las mas cuidadas a la hora de tratar la solucion.
+
+	El algoritmo funciona de la siguente manera 
+	
+	====== Angelo carrea=========
+
+
+conclusion sobre la complejidad del problema
+
+	El problema nos tomo mucho tiempo de estudio de los casos particulares (cuando la torre tiene 2,3 ,4,5 pisos)
+	para poder formular el algoritmo de manera clara,ya que formular el caso base no fue complicado pero el hecho de saber 
+	donde llamar la recursividad y como hacer variar los parametro con la cual se llamaba o los cambios entre torres fue 
+	complicado , aunque por otra parte el calculo de los movimiento fue solo darse cuenta en el papel como se agrandaba esa	
+	cantidad 	
